@@ -1,0 +1,32 @@
+<h1>Home Page</h1>
+<% if logged_in? %>
+    <%= link_to "logout", {:controller=> "sessions", :action=> "destroy"}, :method => :delete%>
+    <p id="notice"><%= notice %></p>
+
+    <h1>Imports</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>File</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @imports.each do |import| %>
+          <tr>
+            <td><%= import.file.filename %></td>
+            <td><%= link_to 'Show', import %></td>
+            <td><%= link_to 'Edit', edit_import_path(import) %></td>
+            <td><%= link_to 'Destroy', import, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <br>
+
+    <%= link_to 'New Import', new_import_path %>
+<% end %>
+
