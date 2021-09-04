@@ -1,5 +1,5 @@
 class ImportsController < ApplicationController
-  before_action :set_import, only: %i[ show edit update destroy ]
+  before_action :require_user, :set_import, only: %i[ show edit update destroy ]
 
   # GET /imports or /imports.json
   def index
@@ -10,6 +10,10 @@ class ImportsController < ApplicationController
 
   # GET /imports/1 or /imports/1.json
   def show
+    if !current_user.imports.find_by(id: params[:id])
+      flash.now[:alert] = "Current user can't access this route."
+      redirect_to root_path
+    end
   end
 
   # GET /imports/new
@@ -19,6 +23,10 @@ class ImportsController < ApplicationController
 
   # GET /imports/1/edit
   def edit
+    if !current_user.imports.find_by(id: params[:id])
+      flash.now[:alert] = "Current user can't access this route."
+      redirect_to root_path
+    end
   end
 
   # POST /imports or /imports.json
