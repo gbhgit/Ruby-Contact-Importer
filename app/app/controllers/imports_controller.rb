@@ -3,7 +3,9 @@ class ImportsController < ApplicationController
 
   # GET /imports or /imports.json
   def index
-    @imports = Import.all
+    if logged_in? 
+      @imports = current_user.imports
+    end
   end
 
   # GET /imports/1 or /imports/1.json
@@ -22,6 +24,8 @@ class ImportsController < ApplicationController
   # POST /imports or /imports.json
   def create
     @import = Import.new(import_params)
+    @import.status = "on hold"
+    @import.user = current_user
 
     respond_to do |format|
       if @import.save
