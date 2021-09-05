@@ -31,11 +31,7 @@ yarn install
 bundle install
 ```
 
-Case you want to run the test db open the browser for login [http://127.0.0.1:3000](http://127.0.0.1:3000):
-- Login: test@gmail.com and Password: test@gmail.com
-- Login: test2@gmail.com and Password: test2@gmail.com
-  
-Create a new database (Only in case you want to get a blank new db):
+Delete the test db, **only** in case you want to get a blank new db:
 ``` sh
 rm -rf db/development.sqlite3
 rails db:migrate
@@ -50,6 +46,9 @@ Open another console and run the server:
 ``` sh
 rails s
 ```
+
+Case you want to run the test db open the browser for login [http://127.0.0.1:3000](http://127.0.0.1:3000):
+- Login: test@gmail.com and Password: test@gmail.com
 		
 ## Considerations
 ### Completed all Mandatory Features
