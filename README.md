@@ -31,8 +31,9 @@ yarn install
 bundle install
 ```
 
-Create database tables:
+Create a new database (Only in case you want to get a blank new db):
 ``` sh
+rm -rf db/development.sqlite3
 rails db:migrate
 ```
 
