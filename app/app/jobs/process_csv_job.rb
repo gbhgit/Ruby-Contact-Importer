@@ -4,10 +4,10 @@ class ProcessCsvJob < ActiveJob::Base
   queue_as :default
 
   def perform(att)
-    import = Import.find_by(id: att["id"])
+    import = Import.find_by(id: att[:id])
     if import
-      import.column = att["header"]
-      import.proc
+      import.header = att[:header]
+      import.run
     end
   end
 end

@@ -4,7 +4,7 @@ class ImportsController < ApplicationController
   before_action :require_user, :set_import, only: %i[show]
 
   def index
-    if logged_in?
+    if logged?
       @imports = current_user.imports
     else
       redirect_to login_path
@@ -13,7 +13,7 @@ class ImportsController < ApplicationController
 
   def show
     unless current_user.imports.find_by(id: params[:id])
-      flash.now[:alert] = "Current user can't access this route."
+      flash[:alert] = "Current user can't access that route."
       redirect_to root_path
     end
   end
@@ -22,14 +22,13 @@ class ImportsController < ApplicationController
     @import = Import.new
   end
 
-  # POST /imports or /imports.json
   def create
     @import = Import.new(import_params)
     @import.status = 'on hold'
     @import.user = current_user
 
     unless @import.header
-      flash.now[:notice] = 'Missing Header'
+      flash[:alert] = 'Header not found'
       redirect_to root_path
       return
     end
@@ -37,23 +36,23 @@ class ImportsController < ApplicationController
     respond_to do |_format|
       if @import.save
         ProcessCsvJob.perform_later({ id: @import.id, header: @import.header })
-        flash[:notice] = 'Import was successfully created.'
+        flash[:notice] = 'Import was successfully saved.'
+        redirect_to root_path
+        return
       else
-        flash.now[:notice] = 'Something went wrong'
+        flash[:alert] = 'Something went wrong, verify to upload the text file'
+        redirect_to root_path
+        return
       end
-      redirect_to root_path
-      return
     end
   end
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_import
     @import = Import.find_by(id: params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def import_params
     params.require(:import).permit(:file,
                                    header: %i[
