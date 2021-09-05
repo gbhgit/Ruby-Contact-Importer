@@ -11,6 +11,34 @@
     </div>
   <% end %>
 
+  <div class="mt-3">
+    <h2>Header</h2>
+    <div class="field">
+      <%= form.label 'header[name]', 'Name' %>
+      <%= form.text_field 'header[name]', placeholder: "Enter corresponding header", required: true %>
+    </div>
+    <div class="field">
+      <%= form.label 'header[birthdate]', 'Birthdate' %>
+      <%= form.text_field 'header[birthdate]', placeholder: "Enter corresponding header", required: true %>
+    </div>
+    <div class="field">
+      <%= form.label 'header[phone]', 'Phone' %>
+      <%= form.text_field 'header[phone]', placeholder: "Enter corresponding header", required: true %>
+    </div>
+    <div class="field">
+      <%= form.label 'header[address]', 'Address' %>
+      <%= form.text_field 'header[address]', placeholder: "Enter corresponding header", required: true %>
+    </div>
+    <div class="field">
+      <%= form.label 'header[address]', 'Credit card' %>
+      <%= form.text_field 'header[credit_card]', placeholder: "Enter corresponding header", required: true %>
+    </div>
+    <div class="field">
+      <%= form.label 'header[address]', 'Email' %>
+      <%= form.text_field 'header[email]', placeholder: "Enter corresponding header", required: true %>
+    </div>
+  </div>
+
   <div class="field">
     <%= form.label :file %>
     <%= form.file_field :file %>
