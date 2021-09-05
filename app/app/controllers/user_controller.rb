@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class UsersController < ApplicationController
+class UserController < ApplicationController
   def new
     @user = User.new
   end
@@ -14,6 +14,10 @@ class UsersController < ApplicationController
       flash[:alert] = 'E-mail alrady in use.'
       redirect_to signup_path
     end
+  end
+
+  def contacts
+    @contacts = current_user.contacts.paginate(page: params[:page], per_page: 10).order('name ASC')
   end
 
   private
