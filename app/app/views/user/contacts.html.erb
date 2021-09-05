@@ -1,0 +1,39 @@
+<h1>Contacts List</h1>
+<%= link_to 'Home', root_path %>
+<div class="flickr_pagination">
+  <%= will_paginate @contacts, :container => false %>
+</div>
+<% if @contacts.empty? %>
+  <div><p>No Contacts</p></div>
+<% else %>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Birthdate</th>
+        <th>Phone</th>
+        <th>Address</th>
+        <th>Credit Card</th>
+        <th>Franchise</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @contacts.each do |contact| %>
+        <tr>
+          <td><%= contact.name %></td>
+          <td><%= contact.birthdate.to_date.strftime("%Y %B %d") %></td>
+          <td><%= contact.phone %></td>
+          <td><%= contact.address %></td>
+          <td><%= contact.credit_card %></td>
+          <td><%= contact.franchise %></td>
+          <td><%= contact.email %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<div class="flickr_pagination mb-4">
+  <%= will_paginate @contacts, :container => false %>
+</div>
