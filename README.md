@@ -1,7 +1,7 @@
 # Ruby Contact Importer
 This application allow users to upload contact files in CSV format and process them in order
 to generate a unified contact file. The contacts are associated to the user who imported
-them into the platform. When uploading the files, the application validate the fields. 
+them into the platform. And the application validate some fields in .csv file. 
 
 ### Recomendations
   - SQLite3
@@ -10,7 +10,7 @@ them into the platform. When uploading the files, the application validate the f
   - NodeJS 12.22.6+
   - Yarn 1.22.5
   - Ruby on rails ver. 6.1.4.1+ (running on port 3000)
-  - Tested in Linux
+  - Tested in Ubuntu 20.04
 
 ### Installation and Deploy
 Clone the repository:
