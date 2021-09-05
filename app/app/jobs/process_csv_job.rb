@@ -1,9 +1,11 @@
-class ProcessCsvJob < ActiveJob::Base
-    queue_as :default
+# frozen_string_literal: true
 
-    def perform(att)
-      puts("================")
-      puts(att)
-      # process...
-    end
+class ProcessCsvJob < ActiveJob::Base
+  queue_as :default
+
+  def perform(att)
+    puts('================')
+    puts(att)
+    # process...
   end
+end
