@@ -3,6 +3,9 @@ This application allow users to upload contact files in CSV format and process t
 to generate a unified contact file. The contacts are associated to the user who imported
 them into the platform. And the application validate some fields of the .csv file. The test .csv file used in tests [test.csv](https://github.com/gbhgit/ruby-app/blob/Documentation/15/test.csv) 
 
+![picture](https://user-images.githubusercontent.com/38015533/132122862-78e3f753-aa0c-4ade-866e-f800efed8ece.png)
+
+
 ### Recomendations
   - SQLite3
   - Ruby .2.5.8+ 
