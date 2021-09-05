@@ -102,7 +102,7 @@ class Import < ApplicationRecord
             save_log(
               "Line #{i + 1} \
               - \nRow #{row.to_s} \
-              - \ncontact email already exist"
+              - \nEmail error: Contact email already exist"
             )
             next
           end
