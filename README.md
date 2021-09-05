@@ -60,3 +60,6 @@ contacts that I have imported and that were successfully created should be displ
 
 ### Bonus (Optional) Features
 :heavy_check_mark: Process the CSV file in a background job. I used the gem 'sidekiq'.
+
+### My Personal Bonus Features
++ All project was developed using the **kanban of github** as shown in page [https://github.com/gbhgit/ruby-app/projects/1](https://github.com/gbhgit/ruby-app/projects/1)
