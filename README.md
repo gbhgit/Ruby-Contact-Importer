@@ -21,7 +21,7 @@ them into the platform. When uploading the files, the application validate the f
 :heavy_check_mark: As a user, I should be able to see a summary of the contacts I have imported. All
 contacts that I have imported and that were successfully created should be displayed in a list that is paginated. \
 :heavy_check_mark: As a user, I should be able to see a log of the contacts that could not be imported and the error associated with it. \
-:heavy_check_mark: As a user, I should be able to see a list of imported files with their respective status. Valid statuses include: On Hold, Processing, Failed, Terminated \
+:heavy_check_mark: As a user, I should be able to see a list of imported files with their respective status. Valid statuses include: On Hold, Processing, Failed, Terminated
 
 ### Bonus (Optional) Features
-:heavy_check_mark: Process the CSV file in a background job. \
+:heavy_check_mark: Process the CSV file in a background job. I used the gem 'sidekiq'.
