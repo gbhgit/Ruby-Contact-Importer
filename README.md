@@ -38,7 +38,7 @@ rails db:migrate
 
 Run the worker job:
 ``` sh
-bundle exec sideqik
+bundle exec sidekiq
 ```
 
 Open another console and run the server:
