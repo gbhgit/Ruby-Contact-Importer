@@ -1,7 +1,8 @@
 <h1>Home Page</h1>
-<% if logged_in? %>
+<% if logged? %>
     <%= link_to "logout", {:controller=> "sessions", :action=> "destroy"}, :method => :delete%>
     <p id="notice"><%= notice %></p>
+    <p id="alert"><%= alert %></p>
 
     <h1>Imports</h1>
 
@@ -17,7 +18,7 @@
         <% @imports.each do |import| %>
           <tr>
             <td><%= import.file.filename %></td>
-            <td><%= link_to 'View file', import.file %></td>
+            <td><%= link_to 'Download', import.file, download: '' %></td>
           </tr>
         <% end %>
       </tbody>

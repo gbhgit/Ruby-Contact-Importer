@@ -7,7 +7,7 @@ class ProcessCsvJob < ActiveJob::Base
     import = Import.find_by(id: att[:id])
     if import
       import.header = att[:header]
-      import.proc
+      import.run
     end
   end
 end
