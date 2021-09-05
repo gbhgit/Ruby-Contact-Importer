@@ -17,9 +17,7 @@
         <% @imports.each do |import| %>
           <tr>
             <td><%= import.file.filename %></td>
-            <td><%= link_to 'Show', import %></td>
-            <td><%= link_to 'Edit', edit_import_path(import) %></td>
-            <td><%= link_to 'Destroy', import, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'View file', import.file %></td>
           </tr>
         <% end %>
       </tbody>

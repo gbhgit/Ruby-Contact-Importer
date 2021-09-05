@@ -1,14 +1,14 @@
 class ImportsController < ApplicationController
-  before_action :require_user, :set_import, only: %i[ show edit update destroy ]
+  before_action :require_user, :set_import, only: %i[ show ]
 
-  # GET /imports or /imports.json
   def index
     if logged_in? 
       @imports = current_user.imports
+    else
+      redirect_to login_path
     end
   end
 
-  # GET /imports/1 or /imports/1.json
   def show
     if !current_user.imports.find_by(id: params[:id])
       flash.now[:alert] = "Current user can't access this route."
@@ -16,17 +16,8 @@ class ImportsController < ApplicationController
     end
   end
 
-  # GET /imports/new
   def new
     @import = Import.new
-  end
-
-  # GET /imports/1/edit
-  def edit
-    if !current_user.imports.find_by(id: params[:id])
-      flash.now[:alert] = "Current user can't access this route."
-      redirect_to root_path
-    end
   end
 
   # POST /imports or /imports.json
@@ -34,48 +25,44 @@ class ImportsController < ApplicationController
     @import = Import.new(import_params)
     @import.status = "on hold"
     @import.user = current_user
+    
+    unless @import.header
+      flash.now[:notice] = "Missing Header"
+      redirect_to root_path
+      return
+    end
 
     respond_to do |format|
       if @import.save
-        format.html { redirect_to @import, notice: "Import was successfully created." }
-        format.json { render :show, file: :created, location: @import }
+        ProcessCsvJob.perform_later({id: @import.id, header: @import.header})
+        flash[:notice] = "Import was successfully created."
+        redirect_to root_path
+        return
       else
-        format.html { render :new, file: :unprocessable_entity }
-        format.json { render json: @import.errors, file: :unprocessable_entity }
+        flash.now[:notice] = "Something went wrong"
+        redirect_to root_path
+        return
       end
-    end
-  end
-
-  # PATCH/PUT /imports/1 or /imports/1.json
-  def update
-    respond_to do |format|
-      if @import.update(import_params)
-        format.html { redirect_to @import, notice: "Import was successfully updated." }
-        format.json { render :show, file: :ok, location: @import }
-      else
-        format.html { render :edit, file: :unprocessable_entity }
-        format.json { render json: @import.errors, file: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /imports/1 or /imports/1.json
-  def destroy
-    @import.destroy
-    respond_to do |format|
-      format.html { redirect_to imports_url, notice: "Import was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_import
-      @import = Import.find(params[:id])
+      @import = Import.find_by(id: params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def import_params
-      params.require(:import).permit(:file)
+      params.require(:import).permit(:file, 
+        header: [
+          :name,
+          :birthdate,
+          :phone,
+          :address,
+          :credit_card,
+          :email
+        ]
+      )
     end
 end
