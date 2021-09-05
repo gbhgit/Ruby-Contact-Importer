@@ -1,7 +1,7 @@
 # Ruby Contact Importer
 This application allow users to upload contact files in CSV format and process them in order
 to generate a unified contact file. The contacts are associated to the user who imported
-them into the platform. And the application validate some fields in .csv file. 
+them into the platform. And the application validate some fields of the .csv file. 
 
 ### Recomendations
   - SQLite3
@@ -18,7 +18,7 @@ Clone the repository:
 git clone https://github.com/gbhgit/ruby-app.git
 ```
 
-Go inside folder app:
+Go inside folder [app](https://github.com/gbhgit/ruby-app/tree/Documentation/15/app):
 ``` sh
 cd app
 ```
@@ -36,12 +36,12 @@ Create database tables:
 rails db:migrate
 ```
 
-Open a console and run the worker job:
+Run the worker job:
 ``` sh
 bundle exec sideqik
 ```
 
-Go to another console and run the server:
+Open another console and run the server:
 ``` sh
 rails s
 ```
