@@ -5,11 +5,46 @@ them into the platform. When uploading the files, the application validate the f
 
 ### Recomendations
   - SQLite3
-  - Ruby 2.5.8
+  - Ruby .2.5.8+ 
+  - Redis 5.0.7+
+  - NodeJS 12.22.6+
+  - Yarn 1.22.5
+  - Ruby on rails ver. 6.1.4.1+ (running on port 3000)
   - Tested in Linux
 
 ### Installation and Deploy
+Clone the repository:
+``` sh
+git clone https://github.com/gbhgit/ruby-app.git
+```
 
+Go inside folder app:
+``` sh
+cd app
+```
+
+Installing dependecies:
+``` sh
+yarn install
+```
+``` sh
+bundle install
+```
+
+Create database tables:
+``` sh
+rails db:migrate
+```
+
+Open a console and run the worker job:
+``` sh
+bundle exec sideqik
+```
+
+Go to another console and run the server:
+``` sh
+rails s
+```
 		
 ## Considerations
 ### Completed all Mandatory Features
