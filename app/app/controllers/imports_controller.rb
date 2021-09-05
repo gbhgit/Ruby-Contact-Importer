@@ -47,6 +47,15 @@ class ImportsController < ApplicationController
     end
   end
 
+  def logs
+    import = Import.find_by(id: params[:id])
+    if !(import) || (import.user != current_user)
+      render :file => "#{Rails.root}/public/404.html", layout: false, status: :not_found
+      return
+    end
+    @logs = import.logs.paginate(page: params[:page], per_page: 10)
+  end
+
   private
 
   def set_import

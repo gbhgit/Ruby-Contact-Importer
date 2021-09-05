@@ -15,13 +15,18 @@
       </thead>
 
       <tbody>
-        <% @imports.each do |import| %>
-          <tr>
-            <td><%= import.file.filename %></td>
-            <td><%= link_to 'Download', import.file, download: '' %></td>
-          </tr>
-        <% end %>
-      </tbody>
+      <% @imports.each do |import| %>
+        <tr>
+          <td><%= import.file.filename.to_s %></td>
+          <td><%= import.status %></td>
+          <% if import.logs.empty? %>
+            <td>No errors</td>
+          <% else %>
+            <td><%= link_to 'Failed registers', logs_path(import) %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
     </table>
 
     <br>

@@ -1,0 +1,17 @@
+<h1>Import Logs</h1>
+<%= link_to 'Home', root_path %>
+<div class="flickr_pagination">
+  <%= will_paginate @logs, :container => false %>
+</div>
+<% if @logs.empty? %>
+  <div><p>No Logs</p></div>
+<% else %>
+  <p>List of errors:</p>
+    <% @logs.each do |register| %>
+      <p><%= register.error %></p>
+    <% end %>
+<% end %>
+
+<div class="flickr_pagination mb-4">
+  <%= will_paginate @logs, :container => false %>
+</div>
